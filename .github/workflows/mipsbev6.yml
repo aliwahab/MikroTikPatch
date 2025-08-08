@@ -7,10 +7,10 @@ on:
         description: 'RouterOS version'
         required: true
         default: '6.49.17'
-
+  
 jobs:
   patch:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       VERSION: ${{ github.event.inputs.version }}
       CUSTOM_LICENSE_PRIVATE_KEY: ${{ secrets.CUSTOM_LICENSE_PRIVATE_KEY }}
@@ -35,8 +35,8 @@ jobs:
           pip install pefile
           sudo apt-get install -y unzip wget
 
-      - name: Run patch script
-        run: sudo apt-get install -y mkisofs xorriso qemu-utils extlinux --no-install-recommends
+     # - name: Run patch script
+       # run: sudo apt-get install -y mkisofs xorriso qemu-utils extlinux --no-install-recommends
          
       - name: Patch RouterOS main package
         run: |
