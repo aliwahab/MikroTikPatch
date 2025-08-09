@@ -40,7 +40,7 @@ jobs:
      # - name: Run patch script
        # run: sudo apt-get install -y mkisofs xorriso qemu-utils extlinux --no-install-recommends
          
-      - name: Patch RouterOS main package
+      - name: Patch ${{ env.VERSION }}-RouterOS main package
         run: |
          if [[ "$VERSION" == 6* ]]; then
           wget https://download.mikrotik.com/routeros/$VERSION/routeros-mipsbe-$VERSION.npk
@@ -69,7 +69,7 @@ jobs:
       - name: Upload patched RouterOS
         uses: actions/upload-artifact@v4
         with:
-          name: routeros-patched
+          name: routeros-patched-${{ env.VERSION }}
           path: |
             routeros-${{ env.VERSION }}-mipsbe-patched.npk
             all_packages-mipsbe-${{ env.VERSION }}-patched.zip
