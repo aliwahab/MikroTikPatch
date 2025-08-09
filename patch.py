@@ -313,16 +313,16 @@ def patch_npk_package(package, key_dict):
                 original_data = item.data
                 patched_data = patch_kernel(original_data, key_dict)
                 
-                # Show first 64 bytes before and after patching for comparison
-                print("Before patch (hex):", original_data[:64].hex())
-                print("After patch  (hex):", patched_data[:64].hex())
+                # Show first 2000 bytes before and after patching for comparison
+                print("Before patch (hex):", original_data[:02000].hex())
+                print("After patch  (hex):", patched_data[:0x2000].hex())
                 
-                # Find and print byte differences within first 64 bytes
+                # Find and print byte differences within first 2000 bytes
                 diffs = [(i, original_data[i], patched_data[i]) 
                          for i in range(min(len(original_data), len(patched_data), 0x2000)) 
                          if original_data[i] != patched_data[i]]
                 if diffs:
-                    print(f"Byte differences at offsets (within first 64 bytes):")
+                    print(f"Byte differences at offsets (within first 2000 bytes):")
                     for offset, old_byte, new_byte in diffs:
                         print(f"  Offset 0x{offset:06X}: {old_byte:02X} != {new_byte:02X}")
                 else:
