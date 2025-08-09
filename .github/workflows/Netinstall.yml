@@ -30,14 +30,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          pip install pefile
-          sudo apt-get install -y unzip wget
-
-      - name: Run patch script
-        run: sudo apt-get install -y mkisofs xorriso qemu-utils extlinux --no-install-recommends
-         
       - name: Patch Netinstall
         run: |
           wget https://download.mikrotik.com/routeros/$VERSION/netinstall-$VERSION.zip
@@ -50,7 +42,7 @@ jobs:
       - name: Upload patched Netinstall
         uses: actions/upload-artifact@v4
         with:
-          name: netinstall-patched
+          name: netinstall-patched-${{ env.VERSION }}
           path: |
             netinstall-${{ env.VERSION }}-patched.zip
             netinstall-${{ env.VERSION }}-patched.sha256
