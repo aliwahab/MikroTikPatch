@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'RouterOS version'
+        description: 'Netinstall version'
         required: true
-        default: '6.49.17'
+        default: '6.47.9'
 
 jobs:
   patch:
