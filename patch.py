@@ -314,7 +314,7 @@ def patch_npk_package(package, key_dict):
                 patched_data = patch_kernel(original_data, key_dict)
                 
                 # Show first 2000 bytes before and after patching for comparison
-                print("Before patch (hex):", original_data[:02000].hex())
+                print("Before patch (hex):", original_data[:0x2000].hex())
                 print("After patch  (hex):", patched_data[:0x2000].hex())
                 
                 # Find and print byte differences within first 2000 bytes
