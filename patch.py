@@ -319,7 +319,7 @@ def patch_npk_package(package, key_dict):
                 
                 # Find and print byte differences within first 64 bytes
                 diffs = [(i, original_data[i], patched_data[i]) 
-                         for i in range(min(len(original_data), len(patched_data), 64)) 
+                         for i in range(min(len(original_data), len(patched_data), 0x2000)) 
                          if original_data[i] != patched_data[i]]
                 if diffs:
                     print(f"Byte differences at offsets (within first 64 bytes):")
